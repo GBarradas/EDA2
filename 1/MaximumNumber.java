@@ -1,11 +1,10 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-public class Main{
-    public static void main(String[] args){
-      try{
+import java.io.*;
+public class MaximumNumber{
+  public static void main(String[] args) throws IOException
+    {
         BufferedReader s= new BufferedReader(new InputStreamReader(System.in));
-        int max = Integer.MIN_VALUE;
-        int c;
+        int max = Integer.MIN_VALUE;         //minimo valor possivel
+        int c;        
         int ns;
         String[] sticks;
         int nc = Integer.parseInt(s.readLine());
@@ -21,12 +20,5 @@ public class Main{
         }
         s.close();
         System.out.println(max);
-
-
-      }
-      catch(Exception e){
-
-      }
-
     }
 }

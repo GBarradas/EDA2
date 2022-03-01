@@ -39,7 +39,7 @@ class Main {
     */
     public int change(int amount){
         int[] coins=new int[amount+1];
-        coins[0]=0;
+        coins[0]=0; //Caso Base
         for(int i=1;i<=amount;i++){
             coins[i]=i/coinsValues[0];
             //System.out.println(i+" "+coins[i]);
