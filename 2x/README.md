@@ -1,6 +1,6 @@
 # Troco de moedas  
 
-*Versão simplificada* 
+*Versão simplificada*  
 <img src="../2/coins.png" align="right">
 Em Algoland todos os habitantes sabem usar algoritmos avan¸cados. Não é por isso de espantar que
 tivessem escolhido um sistema de moedas cuidadosamente preparado ser diferente do habitual. De facto,o típico algoritmo greedy de ir escolher sempre a maior
