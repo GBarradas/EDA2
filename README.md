@@ -13,9 +13,12 @@
 ---  
 ## Aulas 
 
-|Aula                   |Data   |Informações|                        |
+|Peroblema                  |Data   |Informações|                        |
 |-----------------------|-------|-----------|------------------------|
-|[Aula P_1](1/eda2-p1-max-number.pdf)|16/02/2022|Pratica|Resolução de um exercicio e explicação do funcionamento da plataforma Mooshak|
+|[Problema 1](1)|16/02/2022|Pratica|Resolução de um exercicio e explicação do funcionamento da plataforma Mooshak|  
+|[Problema 2](2)|23/02/2022|Pratica|-|
+|[Problema 2x](2x)|23/02/2022|Pratica|-|
+|[Problema 3](3)|02/03/2022|Pratica|-|
 
 ---
 ## Avaliações

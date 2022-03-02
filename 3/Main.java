@@ -6,31 +6,57 @@ class Main {
         BufferedReader br = new BufferedReader( new InputStreamReader(System.in));
         int nCases = Integer.parseInt(br.readLine());
         String aux;
-        String[] cord;
+        String[] arrAux;
         int nBlocks;
+        int[] cords = new int[4];
         for(int i=0;i<nCases;i++){
             City a = new City(Integer.parseInt(br.readLine()));
             aux= br.readLine()+" "+ br.readLine();
             nBlocks=Integer.parseInt(br.readLine());
             for(int j = 0;j<nBlocks;j++){
-                cord=br.readLine().split(" ");
-                a.addBlockage(Integer.parseInt(cord[0])-1,Integer.parseInt(cord[1])-1,cord[2]);
+                arrAux=br.readLine().split(" ");
+                a.addBlockage(Integer.parseInt(arrAux[0])-1,Integer.parseInt(arrAux[1])-1,arrAux[2]);
             }
-            cord=aux.split(" ");
-            System.out.println(a.numberOfWays(Integer.parseInt(cord[0])-1, Integer.parseInt(cord[1])-1, Integer.parseInt(cord[2])-1, Integer.parseInt(cord[3])-1));
+            arrAux=aux.split(" ");
+            for(int k= 0;k<arrAux.length;k++){{
+                cords[k]=Integer.parseInt(arrAux[k])-1;
+            }
+
+            }
+            System.out.println(a.numberOfWays(cords[0], cords[1], cords[2], cords[3]));
+            //a.printW();
+            //a.printB();
         }
+
     }
 }
 
 class City {
-  String cityWorks[][];
-  int size;
+    String cityWorks[][];
+    int size;
+    long[][] ways;
     public City(int size){
         this.size=size;
-        cityWorks=new String[size][size];
+        cityWorks=new String[size+1][size+1];
+        ways=new long[size+1][size+1];
     }
 
-
+    void printW(){
+        for(int i=0;i<size+1 ;  i++){
+            for(int j=0;j< size+1;j++){
+                System.out.print(cityWorks[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    void printB(){
+        for(int i=size;i>=0 ;  i--){
+            for(int j=0;j< size+1;j++){
+                System.out.print(ways[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
     public void addBlockage(int x, int y, String direction){
         if(direction.equals("S")){
             cityWorks[x][y]="N";
@@ -47,18 +73,28 @@ class City {
     }
 
     public long numberOfWays(int sx, int sy, int ex, int ey){
-        long[][] ways=new long[size][size];
-        ways[ex][ey]=1;
-        for(int i=ex;i>=sx;i--){
-            for(int j=ey;j>=sy;j--){
-                if(i<ex && cityWorks[i][j]!="N"){
-                    ways[i][j]+= ways[i+1][j];
-                }
-                if(j<ey && cityWorks[i][j]!="E"){
-                    ways[i][j]+=ways[i][j+1];
-                }
+       ways[ex][ey]=1;
+       // sx==ex
+       for(int i=ey-1;i>=sy;i--){
+           if(cityWorks[ex][i]!="E") ways[ex][i]=ways[ex][i+1];
+       }
+       //sy==ey
+       for(int i=ex-1;i>=sx;i--){
+        if(i<ex && cityWorks[i][ey]!="N") ways[i][ey]=ways[i+1][ey];
+       }
+       // sx<ex && sy<ey
+       for(int i=ex-1;i>=sx;i--){
+        for(int j=ey-1;j>=sy;j--){
+            if(cityWorks[i][j]!="N"){
+                ways[i][j]+= ways[i+1][j];
             }
-        }
-        return ways[sx][sy];
+            if(cityWorks[i][j]!="E"){
+                ways[i][j]+=ways[i][j+1];
+            }
+       }
+    }
+      
+       return ways[sx][sy];
+       
     }
 }
