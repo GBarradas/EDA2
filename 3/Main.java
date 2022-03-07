@@ -8,93 +8,51 @@ class Main {
         String aux;
         String[] arrAux;
         int nBlocks;
-        int[] cords = new int[4];
         for(int i=0;i<nCases;i++){
-            City a = new City(Integer.parseInt(br.readLine()));
+            int size = Integer.parseInt(br.readLine());
             aux= br.readLine()+" "+ br.readLine();
             nBlocks=Integer.parseInt(br.readLine());
+            String[][] works_x= new String[size+1][size+1];
+            String[][] works_y= new String[size+1][size+1];
+            long[][] ways = new long[size+1][size+1];
             for(int j = 0;j<nBlocks;j++){
                 arrAux=br.readLine().split(" ");
-                a.addBlockage(Integer.parseInt(arrAux[0])-1,Integer.parseInt(arrAux[1])-1,arrAux[2]);
+                int pos_x = Integer.parseInt(arrAux[0])-1;
+                int pos_y = Integer.parseInt(arrAux[1])-1;
+                String direction = arrAux[2];
+                if(direction.equals("S") ){
+                    works_y[pos_x][pos_y-1]="N";
+                }
+                else if(direction.equals("W")){
+                    works_x[pos_x-1][pos_y]="E";
+                }
+                else if(direction.equals("E")){
+                    works_x[pos_x][pos_y]="E";
+                }
+                else if(direction.equals("N")){
+                    works_y[pos_x][pos_y]="N";
+                }
             }
             arrAux=aux.split(" ");
-            for(int k= 0;k<arrAux.length;k++){{
-                cords[k]=Integer.parseInt(arrAux[k])-1;
+            int sx=Integer.parseInt(arrAux[0])-1,
+                sy=Integer.parseInt(arrAux[1])-1,
+                ex=Integer.parseInt(arrAux[2])-1,
+                ey=Integer.parseInt(arrAux[3])-1;
+            
+            ways[ex][ey]=1;
+
+            for(int k=ex ; k>=sx ;k--){
+                for(int j=ey; j>=sy;j--){
+                    if(works_x[k][j]!="E") ways[k][j]+= ways[k+1][j];
+                    if(works_y[k][j]!="N") ways[k][j]+=ways[k][j+1];
+                }
             }
+            System.out.println(ways[sx][sy]);
 
             }
-            System.out.println(a.numberOfWays(cords[0], cords[1], cords[2], cords[3]));
-            //a.printW();
-            //a.printB();
-        }
+          
+        
 
     }
 }
 
-class City {
-    String cityWorks[][];
-    int size;
-    long[][] ways;
-    public City(int size){
-        this.size=size;
-        cityWorks=new String[size+1][size+1];
-        ways=new long[size+1][size+1];
-    }
-
-    void printW(){
-        for(int i=0;i<size+1 ;  i++){
-            for(int j=0;j< size+1;j++){
-                System.out.print(cityWorks[i][j]+" ");
-            }
-            System.out.println();
-        }
-    }
-    void printB(){
-        for(int i=size;i>=0 ;  i--){
-            for(int j=0;j< size+1;j++){
-                System.out.print(ways[i][j]+" ");
-            }
-            System.out.println();
-        }
-    }
-    public void addBlockage(int x, int y, String direction){
-        if(direction.equals("S")){
-            cityWorks[x][y]="N";
-        }
-        else if(direction.equals("W")){
-            cityWorks[x][y]="E";
-        }
-        else if(direction.equals("E")){
-            cityWorks[x][y-1]="E";
-        }
-        else if(direction.equals("N")){
-            cityWorks[x-1][y]="N";
-        }
-    }
-
-    public long numberOfWays(int sx, int sy, int ex, int ey){
-       ways[ex][ey]=1;
-       // sx==ex
-       for(int i=ey-1;i>=sy;i--){
-           if(cityWorks[ex][i]!="E") ways[ex][i]=ways[ex][i+1];
-       }
-       //sy==ey
-       for(int i=ex-1;i>=sx;i--){
-        if(i<ex && cityWorks[i][ey]!="N") ways[i][ey]=ways[i+1][ey];
-       }
-       // sx<ex && sy<ey
-       for(int i=ex-1;i>=sx;i--){
-        for(int j=ey-1;j>=sy;j--){
-            if(cityWorks[i][j]!="N"){
-                ways[i][j]+= ways[i+1][j];
-            }
-            if(cityWorks[i][j]!="E"){
-                ways[i][j]+=ways[i][j+1];
-            }
-       }
-    }
-      
-       return ways[sx][sy];
-       
-    }
-}

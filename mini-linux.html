@@ -1,0 +1,750 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="charset=ISO-8859-1">
+  <title>Mini-Guia do Linux</title>
+</head>
+<body>
+<h1><a name=inicio>Mini-Guia do Linux</a></h1>
+
+<p>
+
+[<strong>Vasco Pedro</strong> DI/UE <small><em>v1.0d (21FEV14)</em></small>]
+
+<p>
+
+Noções e comandos que convém conhecer para usar Linux nos laboratórios
+da UE.
+
+<p>
+
+<a href="mini-linux-idx.html">Índice</a>
+
+
+<h2><a name=bases>Noções básicas</a></h2>
+
+<p>
+
+A interacção de um utilizador com o Linux baseia-se na noção de
+<em>sessão de trabalho</em>. Para iniciar uma sessão de trabalho, o
+utilizador deve fornecer ao sistema o seu <em>nome de utilizador</em>
+e a <em>password</em> que lhe está associada. Depois de executados
+estes dois passos, é iniciada a sessão de trabalho, que toma corpo num
+<em>interpretador de comandos</em>, que lê e executa os comandos que o
+utilizador introduz. O interpretador de comandos utilizado nos
+laboratórios é o
+<a href="http://tiswww.case.edu/php/chet/bash/bashtop.html"><tt>Bash</tt></a>.
+
+<p>
+
+O modo como o interpretador de comandos se apresenta é através de uma
+<em>prompt</em>, que pode conter diversa informação e que termina com
+o símbolo <tt>$</tt>, seguido de um espaço e do símbolo <tt>_</tt>, a
+piscar. Este piscar é o modo de o sistema indicar ao utilizador que
+está à espera de alguma acção da sua parte. Neste contexto, o
+utilizador introduzirá os comandos que entender, através do teclado,
+comandos que são lidos e executados pelo interpretador de comandos.
+(No remanescente deste guia, a notação "<tt>$ </tt>" introduz exemplos
+de comandos que poderão ser usados.)
+
+<p>
+
+O Bash mantém a história dos comandos previamente executados, o que
+possibilita não ter de escrever de novo um comando quando se pretende
+voltar a executá-lo. Para percorrer essa história, podem ser usadas as
+teclas <em>seta-para-cima</em> e <em>seta-para-baixo</em>. As teclas
+<em>seta-para-a-esquerda</em> e <em>seta-para-a-direita</em> podem ser
+usadas para percorrer um comando e alterá-lo, antes de o voltar a
+executar.
+
+<p>
+
+No fim da sessão de trabalho, e para a terminar, o utilizador poderá
+usar os comandos <tt>exit</tt> ou <tt>logout</tt>. Em alternativa, a
+combinação das teclas <tt>Control</tt> e <tt>d</tt> (escrita
+<tt>C-d</tt> e lida <em>control-dê</em>), quando pressionada numa
+linha que não contenha mais nada introduzido pelo utilizador, também
+provoca o fecho da sessão de trabalho. (Esta combinação de teclas é
+usada em numerosas situações para terminar a execução de comandos que
+interagem com o utilizador de modo semelhante ao do interpretador de
+comandos.)
+
+<p>
+
+Se, no decorrer da sessão de trabalho, a execução de um comando se
+estender por um tempo inesperadamente longo, essa execução pode ser
+interrompida através da combinação de teclas <tt>C-c</tt>.
+
+
+<h2><a name=nomes>Nomes e padrões</a></h2>
+
+Muitos dos comandos operam sobre <em>ficheiros</em> e/ou
+<em>directorias</em>, cujos nomes são indicados escrevendo-os a seguir
+ao nome do comando. 
+
+<h3><a name=sintaxe>Sintaxe</a></h3>
+
+Estes nomes podem conter praticamente todos os símbolos que se podem
+obter através do teclado. No entanto, e porque alguns destes símbolos
+têm um significado particular para o interpretador de comandos, só é
+seguro usar, nos nomes de ficheiros e de directorias:
+
+<ul>
+<li>as letras maiúsculas e minúsculas;
+<li>os algarismos;
+<li>o símbolo <tt>_</tt> (<em>underscore</em>); e
+
+<li>os símbolos <tt>-</tt> (sinal menos) e <tt>+</tt> (sinal mais),
+    que não devem ser o primeiro símbolo do nome.
+
+</ul>
+
+Embora o símbolo <tt>.</tt> (ponto) não seja um dos que tem um
+significado particular, é prática corrente usá-lo para estruturar o
+nome dos ficheiros em duas partes: <span style="white-space:
+pre"><tt>parte-principal.extensão</tt></span>, onde
+a <tt>parte-principal</tt> dá alguma indicação sobre o conteúdo do
+ficheiro e a <tt>extensão</tt> diz qual é o <em>tipo</em>, ou
+<em>formato</em>, do conteúdo do ficheiro.
+
+<p>
+
+Por exemplo, o ficheiro <tt>aula1.hs</tt> estaria relacionado com a
+primeira aula de Programação I (<tt>aula1</tt>) e o seu conteúdo seria
+código <a href="http://haskell.org/">Haskell</a> (extensão
+<tt>hs</tt>). Outros exemplos serão o ficheiro <tt>index.html</tt>,
+que conterá um índice, escrito em código <a
+href="http://www.w3.org/MarkUp/">HTML</a>, e o ficheiro
+<tt>xutos+pontapes.png</tt>, que conterá algo relacionado com os <a
+href="http://www.xutos.pt/">Xutos &amp; Pontapés</a>, em formato <a
+href="http://www.libpng.org/pub/png/">PNG</a>. Também é possível usar
+o ponto no nome de uma directoria, embora não seja costume. Os nomes
+começados por ponto são frequentemente tratados de modo especial,
+nomeadamente nas <a href="#ls">listagens</a> e na expansão dos <a
+href="#padroes">padrões</a>.
+
+<p>
+
+É de notar que o Linux não considera as minúsculas equivalentes às
+maiúsculas, <em>i</em>.<em>e</em>., os nomes <tt>aula1.hs</tt> e
+<tt>Aula1.hs</tt> correspondem a dois ficheiros distintos.
+
+<h3><a name=relabs>Nomes relativos e absolutos</a></h3>
+
+Quando, num comando, é mencionado o ficheiro <tt>aula1.hs</tt>, este
+nome deve ser entendido como <em>relativo</em> à directoria corrente,
+ou seja, refere-se ao ficheiro chamado <tt>aula1.hs</tt> dentro da
+directoria corrente. Se a directoria corrente mudar, o mesmo nome
+referir-se-á a outro ficheiro.
+
+<p>
+
+Cada ficheiro e directoria tem, também, um nome <em>absoluto</em>,
+obtido concatenando os nomes de todas as directorias que é necessário
+percorrer, desde a raiz do sistema (a directoria <tt>/</tt>) até à
+directoria onde está o ficheiro ou directoria, e o nome do ficheiro ou
+directoria. Por exemplo, o nome absoluto da directoria
+<tt>l00000</tt>, existente dentro da directoria <tt>aluno</tt> que,
+por sua vez, está contida na directoria <tt>home</tt>, que se encontra
+na directoria <tt>/</tt> é <tt>/home/aluno/l00000</tt>. O nome
+absoluto do ficheiro <tt>aula1.hs</tt> dentro desta directoria é
+<tt>/home/aluno/l00000/aula1.hs</tt>.
+
+<p>
+
+Existem dois nomes com significado especial que são <tt>.</tt> (ponto)
+e <tt>..</tt> (ponto-ponto). O primeiro refere-se sempre à directoria
+corrente e o segundo à directoria que contém a directoria corrente.
+Se a directoria corrente for <tt>/home/aluno/l00000</tt>, <tt>..</tt>
+refere-se à directoria <tt>/home/aluno</tt>, mas se a directoria
+corrente for <tt>/home/aluno</tt>, <tt>..</tt> refere-se à directoria
+<tt>/home</tt>.
+
+<p>
+
+O nome <tt>..</tt> é útil para construir nomes relativos: se a
+directoria corrente for <tt>/home/aluno/l00000</tt> e for necessário
+referir o ficheiro <tt>/home/aluno/l00001/aula1.hs</tt>, é possível
+fazê-lo através do nome (relativo) <tt>../l00001/aula1.hs</tt>. A
+leitura deste nome é a seguinte: para, a partir da directoria
+corrente, chegar ao ficheiro <tt>/home/aluno/l00001/aula1.hs</tt>,
+começa-se por subir (<tt>..</tt>) para a directoria que contém a
+directoria corrente, entra-se na directoria <tt>l00001</tt> aí
+contida, e é aí que está o ficheiro <tt>aula1.hs</tt>.
+
+<h3><a name=padroes>Padrões</a></h3>
+
+Através de nomes especiais, chamados <em>padrões</em>, pode-se referir
+vários ficheiros ou directorias de uma forma compacta. Os padrões
+distinguem-se dos outros nomes por poderem incluir os símbolos
+<tt>*</tt> e <tt>?</tt>. Num padrão, o símbolo <tt>*</tt> representa
+uma sequência qualquer, possivelmente vazia, de símbolos (excepto o
+símbolo <tt>/</tt>), e <tt>?</tt> representa uma ocorrência de um
+símbolo qualquer (mais uma vez, exceptuando <tt>/</tt>). Ao acto de
+determinar os nomes que um padrão representa chama-se <em>expansão do
+padrão</em>.
+
+<p>
+
+A expansão de um padrão só inclui nomes começados por ponto se o
+padrão também começa por ponto (ou tem um ponto a seguir a uma
+ocorrência de <tt>/</tt>). (Nos exemplos abaixo, o pronome
+<em>todos</em> exclui os nomes começados por ponto, excepto quando
+mencionados explicitamente.)
+
+<p>
+
+<table border=1>
+<caption><b>Exemplos de padrões</b></caption>
+<tr>
+  <th>Padrão
+  <th>Significado
+<tr>
+  <td><tt>*.hs</tt>
+  <td>
+    todos os ficheiros com extensão <tt>hs</tt> na directoria corrente
+<tr>
+  <td><tt>aula?.hs</tt>
+  <td>
+    todos os ficheiros, na directoria corrente, cujo nome começa por
+    <tt>aula</tt> e a seguir tem um símbolo qualquer (<em>eg</em>.,
+    <tt>2</tt>, <tt>x</tt>, <tt>.</tt>) seguido de <tt>.hs</tt>
+<tr>
+  <td><tt>*</tt>
+  <td>
+    todos os ficheiros e directorias na directoria corrente
+<tr>
+  <td><tt>l00000/*</tt>
+  <td>
+    todos os ficheiros e directorias na directoria <tt>l00000</tt>
+<tr>
+  <td><tt>../?????</tt>
+  <td>
+    todos os ficheiros e directorias, na directoria que contém a
+    corrente, cujo nome tem comprimento cinco
+<tr>
+  <td><tt>/??*n</tt>
+  <td>
+    todos os ficheiros e directorias, na directoria <tt>/</tt>, cujo
+    nome tem comprimento pelo menos três e acaba em <tt>n</tt>
+<tr>
+  <td><tt>/bin/*f*</tt>
+  <td>
+    todos os ficheiros e directorias, na directoria <tt>/bin</tt>,
+    cujo nome inclui um <tt>f</tt>
+<tr>
+  <td><tt>.?*</tt>
+  <td>
+    todos os ficheiros e directorias, na directoria corrente, cujo
+    nome começa por <tt>.</tt> e tem pelo menos mais um símbolo
+</table>
+
+
+<h2><a name=consolas>Consolas virtuais</a></h2>
+
+A instalação do Linux dos laboratórios suporta 6 consolas virtuais,
+que permitem ao utilizador ter outras tantas sessões de trabalho em
+simultâneo.
+
+<p>
+
+Quando o computador arranca em Linux, a consola virtual cujo conteúdo
+é visível no ecrã é a número 1. Para aceder às outras consolas
+virtuais, o utilizador deverá pressionar a tecla <tt>Alt</tt> e, sem a
+libertar, uma das teclas <tt>F2</tt>, <tt>F3</tt>, <tt>F4</tt>,
+<tt>F5</tt> ou <tt>F6</tt>. Estas combinações de teclas, vulgarmente
+representadas por, por exemplo, <tt>Alt-F2</tt>, correspondem às
+consolas virtuais de 2 a 6, respectivamente. Para regressar à consola
+virtual 1, deverá ser utilizada a combinação <tt>Alt-F1</tt>.
+
+<p>
+
+As combinações de teclas <tt>Shift-PageUp</tt> e
+<tt>Shift-PageDown</tt> servem para ver o conteúdo da consola que
+desapareceu pela parte de cima do ecrã, para ser substituído pelo
+conteúdo corrente, desde a última mudança de consola virtual.
+
+<h2><a name=comandos>Comandos úteis</a></h2>
+
+Eis alguns comandos úteis do Linux, organizados por temas.
+
+<h3><a name=cmddir>Directorias</a></h3>
+
+Muitos comandos ou aplicações, em Linux, interpretam <tt>~</tt> (til)
+como a directoria principal (<em>home directory</em>) do
+utilizador. Quando isso acontece, para o utilizador <tt>aluno</tt>,
+<tt>~</tt> e <tt>/home/aluno</tt> são sinónimos.
+
+<h4><tt><a name=ls>ls</a></tt> - lista o conteúdo de directorias</h4>
+
+<dl>
+  <dt><tt>$ <b>ls</b></tt>
+    <dd>
+      Na sua forma mais simples, o comando <tt><a
+      href="#ls">ls</a></tt> apresenta uma lista, ordenada
+      alfabeticamente, de todos os ficheiros e directorias contidos na
+      directoria corrente (exceptuando aqueles cujo nome começa por
+      ponto).
+  <dt><tt>$ <b>ls -l</b></tt>
+    <dd>
+      Com a opção <tt>-l</tt>, o comando <tt><a href="#ls">ls</a></tt>
+      apresenta uma lista mais pormenorizada do conteúdo da
+      directoria. Nesta lista, cada linha corresponde a um ficheiro ou
+      directoria e apresenta, além do seu nome, informação que inclui
+      os <a href="#direitos">direitos de acesso</a>, o nome do
+      utilizador a que pertence, o tamanho e a data da última
+      modificação.
+  <dt><tt>$ <b>ls -l /home/aluno  ../../etc/debian_version</b></tt>
+    <dd>
+      Também é possível indicar, explicitamente, qual(is) a(s)
+      directoria(s) (ou ficheiros) cuja informação se pretende obter.
+  <dt><tt>$ <b>ls -l ~/l00000/*.hs</b></tt>
+    <dd>
+      E também é possível usar padrões como argumentos.
+</dl>
+
+<h4><tt><a name=cd>cd</a></tt> - muda a directoria corrente</h4>
+
+Cada sessão de trabalho está associada, em cada momento, a uma
+directoria: a <em>directoria de trabalho corrente</em> (ou
+<em>directoria corrente</em>). O comando <tt><a href="#cd">cd</a></tt>
+permite associar a sessão de trabalho a outra directoria, ou seja,
+mudar a directoria corrente.
+
+<dl>
+  <dt><tt>$ <b>cd l00000</b></tt>
+    <dd>
+      A directoria corrente passa a ser <tt>l00000</tt>, se esta
+      existir na directoria corrente.
+  <dt><tt>$ <b>cd</b></tt>
+    <dd>
+      Nesta forma, muda a directoria corrente para a directoria
+      principal do utilizador.
+  <dt><tt>$ <b>cd ~</b></tt>
+    <dd>
+      Tem o mesmo efeito que o comando anterior.
+  <dt><tt>$ <b>cd ..</b></tt>
+    <dd>
+      Muda a directoria corrente para a directoria que contém a
+      directoria corrente.
+  <dt><tt>$ <b>cd .</b></tt>
+    <dd>
+      Muda a directoria corrente para a directoria corrente, ou seja,
+      não tem qualquer efeito.
+</dl>
+
+<h4><tt><a name=pwd>pwd</a></tt> - indica a directoria corrente</h4>
+
+<dl>
+  <dt><tt>$ <b>pwd</b></tt>
+    <dd>
+      Escreve, no terminal, o nome absoluto da directoria de trabalho
+      corrente.
+</dl>
+
+<h4><tt><a name=mkdir>mkdir</a></tt> - cria directorias</h4>
+
+<dl>
+  <dt><tt>$ <b>mkdir l00000</b></tt>
+    <dd>
+      Cria, dentro da directoria de trabalho corrente, a directoria
+      <tt>l00000</tt>.
+</dl>
+
+<h4><tt><a name=rmdir>rmdir</a></tt> - apaga directorias</h4>
+
+<dl>
+  <dt><tt>$ <b>rmdir l00000</b></tt>
+    <dd>
+      Apaga a directoria <tt>l00000</tt>, se estiver vazia.
+</dl>
+
+<h3><a name=cmdfich>Ficheiros</a></h3>
+
+<h4><tt><a name=cp>cp</a></tt> - copia ficheiros</h4>
+
+O comando <tt><a href="#cp">cp</a></tt> permite criar cópias de um ou
+mais ficheiros. O último argumento do comando indica o destino da
+cópia: na criação de uma cópia de um único ficheiro, cujo nome é
+indicado no primeiro argumento, o segundo e último argumento poderá
+ser o nome do ficheiro que conterá essa cópia ou o nome de uma
+directoria em que a cópia será criada, com o mesmo nome que o
+original; na cópia de vários ficheiros, o último argumento será o da
+directoria em que as cópias serão criadas.
+
+<p>
+
+Se já existir um ficheiro com o nome indicado para uma cópia, esse
+ficheiro será apagado e a cópia será criada.
+
+<dl>
+  <dt><tt>$ <b>cp aula1.hs aula2.hs</b></tt>
+    <dd>
+      Cria uma cópia do ficheiro <tt>aula1.hs</tt>, chamada
+      <tt>aula2.hs</tt>.
+  <dt><tt>$ <b>cp aula1.hs ..</b></tt>
+    <dd>
+      Cria uma cópia do ficheiro <tt>aula1.hs</tt>, chamada
+      <tt>aula1.hs</tt>, na directoria que contém a directoria
+      corrente.
+  <dt><tt>$ <b>cp aula1.hs aula2.hs copias-seguranca</b></tt>
+    <dd>
+      Cria uma cópia dos ficheiros <tt>aula1.hs</tt> e
+      <tt>aula2.hs</tt> na directoria <tt>copias-seguranca</tt>.
+  <dt><tt>$ <b>cp -i aula1.hs aula2.hs</b></tt>
+    <dd>
+      Quando já existe um ficheiro com o nome de uma cópia a criar, a
+      opção <tt>-i</tt> do comando <tt><a href="#cp">cp</a></tt>
+      diz-lhe para perguntar ao utilizador se deseja efectivamente
+      criar a cópia, destruindo o conteúdo desse ficheiro.
+</dl>
+
+<h4><tt><a name=mv>mv</a></tt> - move e renomeia ficheiros</h4>
+
+Com o comando <tt><a href="#mv">mv</a></tt> pode-se mudar o nome de um
+ficheiro (ou de uma directoria) e mudar ficheiros (ou directorias) de
+directoria.
+
+<p>
+
+Tal como com o comando <tt><a href="#cp">cp</a></tt>, se já existir um
+ficheiro com o novo nome que se quer dar ao ficheiro que se pretende
+renomear, esse ficheiro é apagado e a renomeação é efectuada. O mesmo
+acontece se existir, na directoria para onde se pretende mover um
+ficheiro, um outro ficheiro com o mesmo nome que aquele que se quer
+mover.
+
+<dl>
+  <dt><tt>$ <b>mv aula1 aula1.hs</b></tt>
+    <dd>
+      Muda o nome do ficheiro <tt>aula1</tt> para <tt>aula1.hs</tt>.
+  <dt><tt>$ <b>mv aula1.hs aula2.hs l00000</b></tt>
+    <dd>
+      Move os ficheiros <tt>aula1.hs</tt> e <tt>aula2.hs</tt> para a
+      directoria <tt>l00000</tt>.
+  <dt><tt>$ <b>mv -i aula1 aula1.hs</b></tt>
+    <dd>
+      Com a opção <tt>-i</tt>, se já existir um ficheiro chamado
+      <tt>aula1.hs</tt> o comando <tt><a href="#mv">mv</a></tt>
+      pergunta ao utilizador se o quer destruir, só executando a
+      renomeação se a resposta for afirmativa.
+</dl>
+
+<h4><tt><a name=rm>rm</a></tt> - apaga ficheiros</h4>
+
+Sem opções, este comando não pede confirmação ao utilizador antes de
+apagar um ficheiro, excepto se os <a href="#direitos">direitos de
+acesso</a> do utilizador sobre o ficheiro, o impedem de o alterar.
+
+<dl>
+  <dt><tt>$ <b>rm aula1.hs~</b></tt>
+    <dd>
+      Apaga o ficheiro <tt>aula1.hs~</tt>.
+  <dt><tt>$ <b>rm -i aula1.hs~</b></tt>
+    <dd>
+      Com a opção <tt>-i</tt>, o comando <tt><a href="#rm">rm</a></tt>
+      pede confirmação ao utilizador antes de apagar o ficheiro
+      <tt>aula1.hs~</tt>.
+  <dt><tt>$ <b>rm ./-i</b></tt>
+    <dd>
+      Apaga o ficheiro <tt>-i</tt> da directoria corrente.
+</dl>
+
+<h4><tt><a name=cat>cat</a></tt> - mostra o conteúdo de ficheiros</h4>
+
+É usado para ficheiros pequenos, visto que o conteúdo do ficheiro é
+enviado de um só fôlego para o ecrã.
+
+<dl>
+  <dt><tt>$ <b>cat aula1.hs</b></tt>
+    <dd>
+      Mostra o conteúdo do ficheiro <tt>aula1.hs</tt> no ecrã.
+</dl>
+
+<h4><tt><a name=less>less</a></tt> - mostra o conteúdo de ficheiros</h4>
+
+Mostra o conteúdo de ficheiros, um ecrã de cada vez. Permite avançar e
+recuar no ficheiro e procurar texto. As teclas <tt>h</tt> e <tt>H</tt>
+permitem aceder ao modo de ajuda, em que são mostradas as acções
+possíveis e as teclas que as invocam.
+
+<dl>
+  <dt><tt>$ <b>less aula1.hs</b></tt>
+    <dd>
+      Mostra o conteúdo do ficheiro <tt>aula1.hs</tt>
+      interactivamente.
+</dl>
+
+<h3><a name=cmdrem>Acesso remoto</a></h3>
+
+<h4><tt><a name=lynx>lynx</a></tt> - navegar, navegar</h4>
+
+O <tt><a href="#lynx">lynx</a></tt> é um navegador (<em>browser</em>)
+para a <em>World Wide Web</em> que funciona em modo texto.
+
+<dl>
+  <dt><tt>$ <b>lynx http://www.di.uevora.pt/~vp/p1/</b></tt>
+    <dd>
+      Acede a uma página com informação sobre as aulas práticas de
+      Programação I 2006/2007.
+</dl>
+
+Quando uma página está a ser mostrada, os <em>links</em> nela
+presentes são seleccionados usando as teclas <em>seta-para-cima</em> e
+<em>seta-para-baixo</em>, e as páginas para onde eles apontam são
+acedidas usando a tecla <em>seta-para-a-direita</em>. A página
+anterior é recuperada através da tecla <em>seta-para-a-esquerda</em>.
+
+<h4><tt><a name=wget>wget</a></tt> - transfere páginas</h4>
+
+Este comando transfere o conteúdo de uma página (ou páginas) WWW para
+o disco local.
+
+<dl>
+  <dt><tt>$ <b>wget http://www.di.uevora.pt/~vp/p1/mini-linux.html</b></tt>
+    <dd>
+      Transfere este guia para o ficheiro <tt>mini-linux.html</tt> na
+      directoria de trabalho corrente.
+</dl>
+
+<h4><tt><a name=ssh>ssh</a></tt> - cria sessão de trabalho remota</h4>
+
+Com o <tt><a href="#ssh">ssh</a></tt> é possível obter uma sessão de
+trabalho numa máquina remota, através da infraestrutura de rede. Toda
+a informação, incluindo a <em>password</em>, é transmitida cifrada,
+pelo que só é legível para o utilizador a quem a sessão de trabalho
+pertence.
+
+<dl>
+  <dt><tt>$ <b>ssh alunos.di.uevora.pt</b></tt>
+    <dd>
+      Cria uma sessão de trabalho na máquina
+      <tt>alunos.di.uevora.pt</tt>. O nome do utilizador na máquina
+      remota é o mesmo que o da sessão de trabalho em que o comando é
+      executado.
+  <dt><tt>$ <b>ssh -l l00000 alunos.di.uevora.pt</b></tt>
+  <dt><tt>$ <b>ssh l00000@alunos.di.uevora.pt</b></tt>
+    <dd>
+      Criam uma sessão de trabalho para o utilizador <tt>l00000</tt>
+      na máquina <tt>alunos.di.uevora.pt</tt>.
+</dl>
+
+<h4><tt><a name=scp>scp</a></tt> - copia ficheiros através da rede</h4>
+
+Este comando, baseado no <tt><a href="#ssh">ssh</a></tt>, permite a
+cópia de ficheiros entre máquinas. Os ficheiros são transferidos
+cifrados, de modo a só serem legíveis pelo utilizador que executa o
+comando.
+
+<dl>
+  <dt><tt>$ <b>scp aula1.hs l00000@alunos.di.uevora.pt:aulas/p1/</b></tt>
+    <dd>
+      Copia o ficheiro <tt>aula1.hs</tt> na directoria corrente para a
+      directoria <tt>~/aulas/p1</tt> do utilizador <tt>l00000</tt> na
+      máquina <tt>alunos.di.uevora.pt</tt>.
+  <dt><tt>$ <b>scp l00000@alunos.di.uevora.pt:aulas/p1/trabalho.hs .</b></tt>
+    <dd>
+      Copia o ficheiro <tt>~/aulas/p1/trabalho.hs</tt> do utilizador
+      <tt>l00000</tt> na máquina <tt>alunos.di.uevora.pt</tt> para a
+      directoria corrente.
+</dl>
+
+
+<h2><a name=direitos>Direitos de acesso</a></h2>
+
+Cada ficheiro e directoria tem associados <em>direitos de
+acesso</em>, também chamados <em>permissões</em>.
+
+<p>
+
+Existem três tipos de direitos de acesso, aplicados a três categorias
+de utilizadores. Os direitos de acesso podem ser de <em>leitura</em>
+(<tt>r</tt>), de <em>escrita</em> (<tt>w</tt>) e de <em>execução</em>
+(<tt>x</tt>). As categorias de utilizadores são: o utilizador a quem o
+ficheiro ou a directoria pertence; os utilizadores que pertencem ao
+mesmo grupo que o dono do ficheiro ou directoria; todos os outros
+utilizadores do sistema. (Cada utilizador pertence a, pelo menos, um
+grupo. A cada ficheiro e directoria, além de estar associado um
+utilizador, está também associado um grupo.)
+
+<p>
+
+Suponhamos que o resultado do comando <tt>ls -l aula1.hs</tt> era o
+seguinte:
+
+<pre>
+-rw-r-----  1 l00000 aluno 459 Jul 26 13:35 aula1.hs
+</pre>
+
+Os nove símbolos a partir da coluna 2 descrevem os direitos de acesso
+do ficheiro:
+
+<ul>
+<li>
+  os símbolos <tt>rw-</tt> (colunas 2 a 4) dizem respeito ao dono do
+  ficheiro, neste caso o utilizador <tt>l00000</tt>, que pode ler o
+  ficheiro (<tt>r</tt>), modificá-lo (<tt>w</tt>), mas não o pode
+  executar (<tt>-</tt>);
+<li>
+  o grupo associado ao ficheiro é o grupo <tt>aluno</tt> e os direitos
+  de acesso dos utilizadores pertencentes a este grupo, indicados
+  pelos símbolos das colunas 5 a 7, são: podem ler (<tt>r</tt>) o
+  ficheiro, mas não o podem alterar (primeiro <tt>-</tt>) nem executar
+  (segundo <tt>-</tt>);
+<li>
+
+  os restantes utilizadores do sistema não podem ver o conteúdo do
+  ficheiro, alterá-lo ou executá-lo, dado que os símbolos que
+  representam os seus direitos de acesso (nas colunas 8 a 10) serem
+  todos <tt>-</tt>.
+</ul>
+
+Para o comando <tt>ls -l /bin/ls</tt>, o resultado será parecido com:
+
+<pre>
+-rwxr-xr-x  1 root root 75948 Jul 16 12:37 /bin/ls
+</pre>
+
+Este ficheiro, que corresponde ao comando <tt><a
+href="#ls">ls</a></tt>, pode ser lido e executado por todos os
+utilizadores do sistema (os símbolos <tt>r</tt> e <tt>x</tt> aparecem
+nos símbolos correspondentes ao dono do ficheiro, aos membros do grupo
+<tt>root</tt> e aos restantes utilizadores), mas só o seu dono o pode
+modificar (só os seus direitos de acesso contêm o símbolo <tt>w</tt>).
+
+<p>
+
+No que respeita às directorias, ter direito de leitura significa que é
+possível listar o seu conteúdo (através do comando <tt><a
+href="#ls">ls</a></tt>). O direito de escrita representa a
+possibilidade de criar e apagar ficheiros dentro da directoria e o
+direito de execução corresponde à permissão para ler o conteúdo dos
+ficheiros e directorias que lá se encontram.
+
+
+<h2><a name=docs>Documentação</a></h2>
+
+<h3><a name=docsys>Sistemas de documentação</a></h3>
+
+Nas instalações Linux dos laboratórios existe documentação que
+descreve o funcionamento de todos os comandos mencionados neste guia.
+Esta documentação encontra-se, geralmente, num de dois formatos e é
+consultada usando o comando apropriado: o formato <em>manual</em>,
+consultado com o comando <tt><a href="#man">man</a></tt>, e o formato
+<em>info</em>, acedido através do comando <tt><a
+href="#info">info</a></tt>. Alguns comandos pertencem ao interpretador
+de comandos, e a sua documentação é fornecida pelo comando <tt><a
+href="#help">help</a></tt>.
+
+<h4><tt><a name=man>man</a></tt></h4>
+
+É o comando mais antigo para consultar documentação. Os manuais são
+constituídos por texto formatado e são apresentados pelo <a
+href="#less">less</a> ou por um comando semelhante. A grande maioria
+dos comandos tem documentação neste formato, independentemente de a
+ter também em outro.
+
+<dl>
+  <dt><tt>$ <b>man ssh</b></tt>
+    <dd>
+      Mostra a página de manual do comando <a href="#ssh">ssh</a>.
+  <dt><tt>$ <b>man man</b></tt>
+    <dd>
+      Mostra a página de manual do comando <a href="#man">man</a>.
+</dl>
+
+<h4><tt><a name=info>info</a></tt></h4>
+
+<tt><a href="#info">info</a></tt> é um comando interactivo de consulta
+de documentação. A documentação escrita neste sistema organiza-se de
+forma hierárquica, em <em>nós</em>, entre os quais se pode navegar, e
+inclui menus e referências cruzadas, que são formas primitivas de
+<em>hyperlinks</em>.
+
+<dl>
+  <dt><tt>$ <b>info ls</b></tt>
+    <dd>
+      Acede à documentação do comando <a href="#ls">ls</a>.
+  <dt><tt>$ <b>info info</b></tt>
+    <dd>
+      Acede à documentação do comando <a href="#info">info</a>.
+  <dt><tt>$ <b>info</b></tt>
+    <dd>
+      Acede ao topo da hierarquia do sistema <em>info</em>. A partir
+      daí é possível aceder aos restantes documentos que o integram. 
+</dl>
+
+<h4><tt><a name=help>help</a></tt></h4>
+
+Dado ser possível utilizar vários interpretadores de comandos, a
+documentação dos seus comandos internos (comandos <em>built-in</em>)
+está integrada na documentação do próprio interpretador de comandos.
+
+<p>
+
+O interpretador de comandos utilizado nos laboratórios, <tt>Bash</tt>,
+possui o comando <tt><a href="#help">help</a></tt>, que dá uma
+descrição breve dos comandos internos. A documentação do
+<tt>Bash</tt>, acessível através dos comandos <tt>man bash</tt>
+(secção "SHELL BUILTIN COMMANDS") e <tt>info bash</tt> (nó "Shell
+Builtin Commands"), contém descrições mais pormenorizadas desses
+comandos.
+
+<dl>
+  <dt><tt>$ <b>help cd</b></tt>
+    <dd>
+      Descrição do comando <tt><a href="#cd">cd</a></tt>.
+  <dt><tt>$ <b>help help</b></tt>
+    <dd>
+      Descrição do comando <tt><a href="#help">help</a></tt>.
+  <dt><tt>$ <b>help</b></tt>
+    <dd>
+      Apresenta uma lista dos comandos internos do <tt>Bash</tt>.
+</dl>
+
+<h3><a name=docint>Programas auto-documentados</a></h3>
+
+Muitos comandos correspondem a programas que têm, internamente, alguma
+forma de se documentarem, em geral de forma sucinta. Nos programas não
+interactivos, essa documentação é acedida através de uma opção, como
+<tt>--help</tt>, <tt>-help</tt> ou <tt>-h</tt>.
+
+<dl>
+  <dt><tt>$ <b>ls --help</b></tt>
+    <dd>
+      Com esta opção, o comando <tt><a href="#ls">ls</a></tt> mostra
+      uma breve descrição do seu funcionamento e a lista das opções
+      que reconhece.
+  <dt><tt>$ <b>wget -h</b></tt>
+    <dd>
+      Lista as opções do comando <tt><a href="#wget">wget</a></tt>.
+</dl>
+
+Alguns programas interactivos também têm alguma forma de documentação
+interna, acessível durante o seu funcionamento. No <tt><a
+href="#less">less</a></tt> e no <tt><a href="#lynx">lynx</a></tt>, a
+tecla <tt>H</tt> invoca a visualização da documentação, enquanto que
+no <tt><a href="#info">info</a></tt>, essa função corresponde à
+tecla <tt>?</tt>.
+
+<p>
+
+Por vezes, estes comandos apresentam, nas últimas linhas do ecrã,
+pistas quanto ao modo de aceder à sua documentação. Noutros, é
+necessário ler a restante documentação, através dos comandos <tt><a
+href="#man">man</a></tt> ou <tt><a href="#info">info</a></tt>, para
+saber como obter documentação durante o seu funcionamento.
+
+<hr align=left width="20%">
+
+<small>
+  Quaisquer comentários, sugestões ou correcções poderão ser enviados
+  para <tt>vp</tt> (seguido de <tt>@di.uevora.pt</tt>).
+</small>
+
+</body>
+</html>
+
+<!-- Local variables: -->
+<!-- ispell-local-dictionary: "portugues" -->
+<!-- End: -->
