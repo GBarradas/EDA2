@@ -14,12 +14,12 @@ For each test case, the output must follow the description below. The outputs of
 ## Sample Input  
 
 ```
-1  
-5 4  
-3 2 1 5  
-2 2 5 3  
-4 1 3  
-5 1 1  
+1
+5 4
+3 2 1 5
+2 2 5 3
+4 1 3
+5 1 1
 ```
 
 ## Sample Output  

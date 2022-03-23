@@ -26,42 +26,42 @@ For each input case your program must output a line indicating the number of way
 This sample input has a single test case, that corresponds to the figure above.   
 
 ``` 
-1  
-3  
-1 1  
-3 3  
-2  
-2 3 S  
-2 2 W  
+1
+3
+1 1
+3 3
+2
+2 3 S
+2 2 W
 ```  
 
 ## Sample Output 1  
 
 ``` 
-3  
+3
 ```  
 
 ## Sample Input 2  
 
 ``` 
-2  
-3  
-1 1  
-3 3  
-0  
-20  
-1 1  
-20 20  
-2  
-10 10 N  
-10 10 E  
+2
+3
+1 1
+3 3
+0
+20
+1 1
+20 20
+2
+10 10 N
+10 10 E
 ```  
 
 ## Sample Output 2  
 
 ``` 
-6  
-26362427080  
+6
+26362427080
 ```  
 
 ## Solução  

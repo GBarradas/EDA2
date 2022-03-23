@@ -14,25 +14,25 @@ The output consists of T lines, one for each test case.If no employee (but the s
 ## Sample Input  
 
 ``` 
-6  
-2 1 2  
-2 3 4  
-3 0 4 5  
-1 4  
-0  
-2 0 2  
-3  
-0  
-4  
-5   
+6
+2 1 2
+2 3 4
+3 0 4 5
+1 4
+0
+2 0 2
+3
+0
+4
+5
 ```
 
 ## Sample Output  
 
 ``` 
-3 2  
-0  
-2 1    
+3 2
+0
+2 1
 ```
 
 # MIUP’2004: Fourth Portuguese National Programming Contest
