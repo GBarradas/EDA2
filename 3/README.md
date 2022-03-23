@@ -23,7 +23,9 @@ The input will consist of one or more independent test cases and the first line 
 For each input case your program must output a line indicating the number of ways you can go from the starting to the ending intersections, given that you are only allowed to travel North and East.   
 &emsp;You may assume that the number of ways to go from the starting to the ending intersections is always strictly less than <img src="https://render.githubusercontent.com/render/math?math=\large\2^63"> .  
 ## Sample Input 1  
-This sample input has a single test case, that corresponds to the figure above.
+This sample input has a single test case, that corresponds to the figure above.   
+
+``` 
 1  
 3  
 1 1  
@@ -31,9 +33,17 @@ This sample input has a single test case, that corresponds to the figure above.
 2  
 2 3 S  
 2 2 W  
+```  
+
 ## Sample Output 1  
+
+``` 
 3  
+```  
+
 ## Sample Input 2  
+
+``` 
 2  
 3  
 1 1  
@@ -45,9 +55,15 @@ This sample input has a single test case, that corresponds to the figure above.
 2  
 10 10 N  
 10 10 E  
+```  
+
 ## Sample Output 2  
+
+``` 
 6  
 26362427080  
+```  
+
 ## Solução  
 ``` java
   import java.io.*;

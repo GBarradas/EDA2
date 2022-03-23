@@ -45,23 +45,31 @@ programa:
 1 ≤ P ≤ 100 Quantidade de perguntas  
 1 ≤ Qi ≤ 200 000 Quantia para a qual se quer minimizar o número de moedas a usar   
 
-## Exemplo de Input
-4  
-1 5 8 11  
-6  
-13  
-20  
-51  
-19  
-98  
-42  
-## Exemplo de Output
-13: [2]  
-20: [3]  
-51: [6]  
-19: [2]  
-98: [10]  
-42: [5]  
+## Exemplo de Input  
+
+``` 
+4
+1 5 8 11
+6
+13
+20
+53
+19
+98
+42
+```  
+
+## Exemplo de Output  
+
+``` 
+13: [2]
+20: [3]
+51: [6]
+19: [2]
+98: [10]
+42: [5]
+```  
+
 ## Explicação do Input/Output
 O exemplo de input corresponde ao conjunto de tipos de moedas descrito no enunciado: 1,
 5, 8 e 11 cêntimos.

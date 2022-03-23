@@ -12,6 +12,8 @@ The first line of the input contains the number E of employees (1≤E≤2500). E
 ## Output  
 The output consists of T lines, one for each test case.If no employee (but the source) hears the piece of news, the output line contains theinteger 0.O therwise,  the  output  line  contains  two  integers,M and D,  separated  by  a  singlespace, where M is the maximum daily boom size andDis the first boom day.   
 ## Sample Input  
+
+``` 
 6  
 2 1 2  
 2 3 4  
@@ -23,11 +25,15 @@ The output consists of T lines, one for each test case.If no employee (but the s
 0  
 4  
 5   
+```
 
 ## Sample Output  
+
+``` 
 3 2  
 0  
 2 1    
+```
 
 # MIUP’2004: Fourth Portuguese National Programming Contest
 

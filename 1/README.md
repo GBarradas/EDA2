@@ -11,13 +11,20 @@ Given the sticks picked by the children, the goal is to findout the maximum numb
 ## Output  
 The output has a single line with the maximum number carved on the sticks collected byall children.  
 ## Sample Input  
+
+``` 
 4  
 3 5 12 2  
 0  
 3 25 5 17  
 5 2 4 2 10 21  
+```  
+
 ## Sample Output  
+
+``` 
 25  
+```
 
 # Solution 
 ``` java 

@@ -12,11 +12,18 @@ The input begins with a single positive integer on a line by itself indicating t
 For each test case, the output must follow the description below. The outputs of two consecutive cases will be separated by a blank line. The output should be a single line with the permutation of the tasks 1 . . . N to be performed, ordered by dependencies (i.e. no task should appear before others that it depends on). To avoid ambiguity in the output, tasks that do not depend on each other should be ordered by their number (lower numbers first).  
 
 ## Sample Input  
+
+```
 1  
 5 4  
 3 2 1 5  
 2 2 5 3  
 4 1 3  
 5 1 1  
+```
+
 ## Sample Output  
+
+``` 
 1 5 3 2 4
+```
