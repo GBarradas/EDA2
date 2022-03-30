@@ -38,8 +38,10 @@ class Main {
   class Project {
     static int tasks;
     static List<Integer>[] dependencies;
+    static int[] nOfDepends;
     static int current;
     static List< Integer> order;
+    static List<Integer> aux;
     static Boolean[] executed ;
     @SuppressWarnings("unchecked")
     public Project(int tas){
@@ -63,33 +65,42 @@ class Main {
         System.out.println(dependencies[i]);
       }
     }
-    public boolean decide(int i){
-      for( int d : dependencies[i]){
-        if(!executed[d]){
-          return false;
+    public List<Integer> dfs(int no){
+      executed[no]=true;
+      for(int v : dependencies[no]){
+        if(!executed[v]){
+          System.out.println(v);
+          dfs(v);
         }
       }
-      return true;
+      aux.add(no);
+      return aux;
     }
     
     public int[] computeOrder(){
       int[] result = new int[tasks-1];
       executed= new Boolean[tasks];
-      for(int i = 0; i<tasks;++i){
+      order= new ArrayList<Integer>();
+      aux = new ArrayList<Integer>();
+      for(int i= 0; i<tasks;++i){
         executed[i]=false;
       }
-      for( int i = 0; i<tasks-1;){
-        for(int t = 1; t<tasks; t++ ){
-          if(!executed[t]){
-            if(decide(t)){
-              result[i]=t;
-              ++i;
-              executed[t]=true;
-              break;
-            }
-          }
+      
+
+      for(int i = 1; i<tasks;++i){
+        if(!executed[i]){
+          aux.clear();
+          order.addAll( dfs(i));
         }
+        System.out.println(order);
+      }
+
+
+
+      for(int i = 0; i<tasks-1;++i){
+        result[i]=order.get(i);
       }
       return result;
     }
+      
   }
