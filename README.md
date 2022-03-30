@@ -19,6 +19,10 @@
 |[Problema 2](2)|23/02/2022|Pratica|-|
 |[Problema 2x](2x)|23/02/2022|Pratica|-|
 |[Problema 3](3)|02/03/2022|Pratica|-|
+|[Trabalho 1](../EDA2_Work_1/)|09/03/2022|Pratica|-|
+|[Problema 4](4)|16/03/2022|PraticaPraticaPratica|-|
+|[Problema 5](5)|23/03/2022|PraticaPratica|-|
+|[Problema 6](6)|30/03/2022|Pratica|-|
 
 ---
 ## Avaliações
@@ -27,8 +31,11 @@
 |1º Frequência     |07/04/2022|20:30|-     |-|
 |2º Frequência     |09/06/2022|09:30|-     |-|
 |Exame Normal      |09/06/2022|09:30|-     |-|
-|Exame Recurso     |23/06/2022|14:30|-     |-|
-|Entrega Trabalho 1|-|-|-|-| 
+|Exame Recurso     |23/06/2022|14:30|-     |-|  
+
+|Avaliação         |Codigo    |Relatorio |Duração|Sala    |
+|------------------|----------|----------|:-----:|:------:| 
+|Entrega Trabalho 1|22/03/2022|24/03/2022|-|-| 
 |Entrega Trabalho 2|-|-|-|-| 
 |Entrega Trabalho 3|-|-|-|-| 
 |Discussão Trabalho|09/06/2022|14:30|-|-| 
