@@ -26,8 +26,8 @@
 
 ---
 ## Avaliações
-|Avaliação         |Data      |Hora |Duração|Sala    |
-|------------------|----------|:---:|:-----:|:------:| 
+|Avaliação         |Data      |Hora |Hora  |Sala    |
+|------------------|----------|:---:|:----:|:------:| 
 |1º Frequência     |07/04/2022|20:30|-     |-|
 |2º Frequência     |09/06/2022|09:30|-     |-|
 |Exame Normal      |09/06/2022|09:30|-     |-|
@@ -38,7 +38,7 @@
 |Entrega Trabalho 1|22/03/2022|24/03/2022|-|-| 
 |Entrega Trabalho 2|-|-|-|-| 
 |Entrega Trabalho 3|-|-|-|-| 
-|Discussão Trabalho|09/06/2022|14:30|-|-| 
+|Discussão Trabalho|09/06/2022|-|14:30|-| 
 --- 
 ## Plano Curricular
 Análise das complexidades temporal e espacial: Complexidade amortizada  
