@@ -11,17 +11,12 @@ class Main {
   static Project a;
   public static void main(String[] args) throws IOException
   {
-      aux=br.readLine().split(" ");
-      N=Integer.parseInt(aux[0]);
-      M=Integer.parseInt(aux[1]);
-      a= new Project(N);
-      for(int i = 0; i < M ; ++i){
-      aux = br.readLine().split(" ");
-      task = Integer.parseInt(aux[0]);
-      nOfTasks = Integer.parseInt(aux[1]);
-      for( int j=0;j<nOfTasks;++j){
-        a.addDependency(task,Integer.parseInt(aux[j+2]));
-      }
+    aux=br.readLine().split(" ");
+    N=Integer.parseInt(aux[0]);
+    M=Integer.parseInt(aux[1]);
+    a= new Project(N);
+    for(int i = 0; i < M ; ++i){
+      a.addDependency(br.readLine().split(" "));
     }
     //a.print();
     int[] result = a.computeOrder();
@@ -39,68 +34,60 @@ class Main {
     static int tasks;
     static List<Integer>[] dependencies;
     static int[] nOfDepends;
-    static int current;
-    static List< Integer> order;
-    static List<Integer> aux;
-    static Boolean[] executed ;
+    static List<Integer> order;
+    Queue<Integer> Q;
     @SuppressWarnings("unchecked")
+
     public Project(int tas){
       tasks = tas+1;
-      dependencies= new List[tasks];
-      
+      dependencies = new List[tasks];
+      nOfDepends = new int[tasks];
       for(int i = 0; i <  tasks; ++i){
         dependencies[i] = new ArrayList<Integer>();
       }
     }
   
-    /*
-      Acrescenta a tarefa PRECEDENT às tarefas de que a tarefa TASK depende.
-      */
-      public void addDependency(int task, int precedent){
-        dependencies[task].add(precedent);
+    public void addDependency(String[] depend){
+      int x = Integer.parseInt(depend[0]);
+      int nOfd = Integer.parseInt(depend[1]);
+      nOfDepends[x]=nOfd;   //numero de dependencias de x 
+      // adicionar as dependencias ao contrario
+      for(int i = 2; i < nOfd+2; ++i){
+        dependencies[Integer.parseInt(depend[i])].add(x);
       }
 
-      public void print(){
+    }
+
+    public void print(){
       for (int i =1; i < tasks;++i){
         System.out.println(dependencies[i]);
       }
     }
-    public List<Integer> dfs(int no){
-      executed[no]=true;
-      for(int v : dependencies[no]){
-        if(!executed[v]){
-          System.out.println(v);
-          dfs(v);
-        }
-      }
-      aux.add(no);
-      return aux;
-    }
     
     public int[] computeOrder(){
       int[] result = new int[tasks-1];
-      executed= new Boolean[tasks];
-      order= new ArrayList<Integer>();
-      aux = new ArrayList<Integer>();
-      for(int i= 0; i<tasks;++i){
-        executed[i]=false;
+      Q = new PriorityQueue<Integer>();
+      order = new ArrayList<Integer>();
+      for(int i = 1; i<tasks;i++){
+        if(nOfDepends[i]==0)
+          Q.add(i);   // adicionar as que não tem dependencias
       }
-      
-
-      for(int i = 1; i<tasks;++i){
-        if(!executed[i]){
-          aux.clear();
-          order.addAll( dfs(i));
+      int actual;
+      while(!Q.isEmpty()){
+        actual=Q.poll();
+        order.add(actual);
+        for(int i : dependencies[actual]){
+          --nOfDepends[i];
+          if(nOfDepends[i]==0)
+            Q.add(i);
         }
-        System.out.println(order);
+      }
+      for(int i = 0; i < tasks-1; ++i){
+        result[i] = order.get(i);
       }
 
-
-
-      for(int i = 0; i<tasks-1;++i){
-        result[i]=order.get(i);
-      }
       return result;
+
     }
       
   }

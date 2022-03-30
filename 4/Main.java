@@ -47,6 +47,9 @@ class Main {
 
     }
     public void calc(){
+      int[] arr = new int[2];
+      if(a.adj[source].isEmpty())
+        return arr;
       LinkedList<Integer> spread = new LinkedList<Integer>();
       spread.add(source);
       int[] dayFindOut = new int[a.employees];
