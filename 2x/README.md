@@ -82,6 +82,7 @@ O exemplo de input corresponde ao conjunto de tipos de moedas descrito no enunci
 ## Autor
 Pedro Ribeiro @ DCC/FC/UP (autor da versão original)  
 ## Solução   
+
 ```java  
     import java.io.*;
 

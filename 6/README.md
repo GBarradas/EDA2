@@ -35,9 +35,9 @@ The first line of the input has four space separated integers: A, B, E, and P. A
  Each of the following P lines contains two distinct space separated integers, x and y, which indicate that employee x outperformed employee y.   
 
 ## Constraints  
-1 ≤ A < B < E Interval endpoints.  
-2 ≤ E ≤ 5 000 Number of employees.  
-1 ≤ P ≤ 20 000 Number of precedence rules.   
+- 1 ≤ A < B < E Interval endpoints.  
+- 2 ≤ E ≤ 5 000 Number of employees.  
+- 1 ≤ P ≤ 20 000 Number of precedence rules.   
 
 ##  Output  
 The output consists of three lines. The first line contains the number of employees that

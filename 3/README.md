@@ -65,6 +65,7 @@ This sample input has a single test case, that corresponds to the figure above.
 ```  
 
 ## Solução  
+
 ``` java
   import java.io.*;
 
