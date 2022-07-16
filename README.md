@@ -47,3 +47,6 @@ Grafos: Orientados e não orientados, pesados e não pesados, representação po
 Percursos em largura e em profundidade, ordenação topológica, componentes conexas e fortemente conexas; Árvore de cobertura  
 mínima: algoritmos de Prim e de Kruskal; O tipo abstracto de dados Partição (union-ﬁnd); Caminhos mais curtos: algoritmos de Bellman-Ford e de Dijkstra, algoritmo para DAGs; Caminhos mais curtos entre cada dois vértices: algoritmo de Floyd-Warshall;Fluxos.  
 Teoria da complexidade: Classes P e NP, redução de problemas.
+
+---  
+<style> #nav{ position: inline-block; align-items: center; text-align: center; } .left{ float: left; } .center{ text-align=center; } .right{ float: right; } .red{ color: red; } .markdown-body blockquote { background: white; padding: 0 1em; padding: 0 1em; color: #000000; border-left: 0.25em solid #007fff; } </style>
