@@ -33,8 +33,8 @@ people in direct connection and wij denotes the number of days pi and pj have be
 connected in the network. All pi and pj are integers between 1 and |P|.  
 
 ## Constrains  
-- 0 < |P| ≤ 10000 
-- 0 < |R| ≤ 200000 
+- 0 < \|P\| ≤ 10000 
+- 0 < \|R\| ≤ 200000 
 - 0 < wij ≤ 10000 
 
 ## Sample Input and Output 1  
