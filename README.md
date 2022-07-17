@@ -40,12 +40,12 @@
 |Exame Recurso     |23/06/2022|14:30|-     |-|  
 
 
-|Avaliação         |Codigo    |Relatorio |Duração|Sala    |
-|------------------|:--------:|:--------:|:-----:|:------:| 
-|Entrega Trabalho 1|22/03/2022|24/03/2022|-|-| 
-|Entrega Trabalho 2|-|-|-|-| 
-|Entrega Trabalho 3|-|-|-|-| 
-|Discussão Trabalho|09/06/2022|-|14:30|-|  
+|Avaliação         |Codigo    |Relatorio |
+|------------------|:--------:|:--------:|
+|Entrega Trabalho 1|22/03/2022|24/03/2022|
+|Entrega Trabalho 2|27/04/2022|29/04/2022|
+|Entrega Trabalho 3|17/05/2022|19/05/2022|
+|Discussão Trabalho|09/06/2022|-|
 
 --- 
 ## Plano Curricular
