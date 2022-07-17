@@ -7,8 +7,8 @@
 
 ## Docentes:
 - Vasco Pedro
-  > email: vp@uevora.pt  
-    email: vp@di.uevora.pt  
+  > email: [vp@uevora.pt](malito:vp@uevora.pt)  
+    email: [vp@di.uevora.pt](malito:vp@di.uevora.pt)  
     link: http://home.uevora.pt/~vp  
     Gabinete: CLAV-256
 
