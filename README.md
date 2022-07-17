@@ -23,9 +23,15 @@
 |[Problema 4](4)|16/03/2022|PraticaPraticaPratica|-|
 |[Problema 5](5)|23/03/2022|PraticaPratica|-|
 |[Problema 6](6)|30/03/2022|Pratica|-|
+|[Problema 7](7)|06/04/2022|Pratica|-|
+|[Trabalho 2](../EDA2_Work_2/)|11/04/2022|Pratica|-|
+|[Problema 8](8)|20/04/2022|Pratica|-|
+|[Trabalho 3](../EDA2_Work_3/)|27/04/2022|Pratica|-|
+|[Problema 9](9)|11/05/2022|Pratica|-|
 
 ---
-## Avaliações
+## Avaliações  
+
 |Avaliação         |Data      |Hora |Hora  |Sala    |
 |------------------|----------|:---:|:----:|:------:| 
 |1º Frequência     |07/04/2022|20:30|-     |-|
@@ -33,12 +39,14 @@
 |Exame Normal      |09/06/2022|09:30|-     |-|
 |Exame Recurso     |23/06/2022|14:30|-     |-|  
 
+
 |Avaliação         |Codigo    |Relatorio |Duração|Sala    |
 |------------------|:--------:|:--------:|:-----:|:------:| 
 |Entrega Trabalho 1|22/03/2022|24/03/2022|-|-| 
 |Entrega Trabalho 2|-|-|-|-| 
 |Entrega Trabalho 3|-|-|-|-| 
-|Discussão Trabalho|09/06/2022|-|14:30|-| 
+|Discussão Trabalho|09/06/2022|-|14:30|-|  
+
 --- 
 ## Plano Curricular
 Análise das complexidades temporal e espacial: Complexidade amortizada  
@@ -49,4 +57,16 @@ mínima: algoritmos de Prim e de Kruskal; O tipo abstracto de dados Partição (
 Teoria da complexidade: Classes P e NP, redução de problemas.
 
 ---  
-<style> #nav{ position: inline-block; align-items: center; text-align: center; } .left{ float: left; } .center{ text-align=center; } .right{ float: right; } .red{ color: red; } .markdown-body blockquote { background: white; padding: 0 1em; padding: 0 1em; color: #000000; border-left: 0.25em solid #007fff; } </style>
+<style>
+     .red{
+         color: red;
+     }
+    .markdown-body blockquote {
+        background:rgb(140 143 147 / 17%);
+        padding: 0 1em;
+        padding: 0 1em;
+        color: #000000;
+        border-left: 0.25em solid #007fff;
+    }   
+ </style>
+ <link rel="icon" href="../uevora.png">
