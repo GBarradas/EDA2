@@ -70,7 +70,7 @@ are B promotions).
 
 ## Solução  
 
-```
+``` java
 import java.io.*;
 import java.util.*;
 
