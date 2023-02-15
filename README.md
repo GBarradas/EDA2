@@ -3,7 +3,7 @@
 🗂 [[parent directory]](../degreeStuff)  
 
 [ <img width="75px" src="https://github.com/GBarradas/GBarradas/blob/main/img/moodle.png?raw=true">]()  
-<a href="https://takatakata.di.uevora.pt/~mooshak/cgi-bin/execute/3842592646294549?command=login&contest=eda2_2021_prat" target="_blank"  rel="noopener noreferrer"><img src="https://github.com/GBarradas/MIUP/blob/main/mooshak.png?raw=true" /> MooShak</a>  
+<a href="https://takatakata.di.uevora.pt/~mooshak/cgi-bin/execute/3842592646294549?command=login&contest=eda2_2021_prat" target="_blank"  rel="noopener noreferrer"><img src="https://github.com/GBarradas/GBarradas/blob/main/img/mooshak.png?raw=true" /> MooShak</a>  
 
 ## Docentes:
 - Vasco Pedro
@@ -32,25 +32,7 @@
 |[Trabalho 3](../EDA2_Work_3/)|27/04/2022|Pratica|-|
 |[Problema 9](9)|11/05/2022|Pratica|-|
 
----
-## Avaliações  
 
-|Avaliação         |Data      |Hora |Hora  |Sala    |
-|------------------|----------|:---:|:----:|:------:| 
-|1º Frequência     |07/04/2022|20:30|-     |-|
-|2º Frequência     |09/06/2022|09:30|-     |-|
-|Exame Normal      |09/06/2022|09:30|-     |-|
-|Exame Recurso     |23/06/2022|14:30|-     |-|  
-
-
-|Avaliação         |Codigo    |Relatorio |
-|------------------|:--------:|:--------:|
-|Entrega Trabalho 1|22/03/2022|24/03/2022|
-|Entrega Trabalho 2|27/04/2022|29/04/2022|
-|Entrega Trabalho 3|17/05/2022|19/05/2022|
-|Discussão Trabalho|09/06/2022|-|
-
---- 
 ## Plano Curricular
 Análise das complexidades temporal e espacial: Complexidade amortizada  
 Construção de algoritmos: divisão e conquista, algoritmos greedy, programação dinâmica  
